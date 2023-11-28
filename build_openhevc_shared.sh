@@ -1,5 +1,7 @@
 #!/bin/sh -x
 
+DEST=$2
+
 echo "Compilation of OpenHEVC"
 
 branch="ffmpeg_update"
@@ -15,14 +17,14 @@ make clean
 make openhevc-shared || exit 1
 
 
-mkdir -p ../../gpac_public/extra_lib/include/libopenhevc
-cp ./libopenhevc/*.h ../../gpac_public/extra_lib/include/libopenhevc
+mkdir -p $DEST/extra_lib/include/libopenhevc
+cp ./libopenhevc/*.h $DEST/extra_lib/include/libopenhevc
 
-mkdir -p ../../gpac_public/bin/gcc
+mkdir -p $DEST/bin/gcc
 if [ -f ./libopenhevc/libopenhevc.so ]; then
-	cp -af ./libopenhevc/libopenhevc.so* ../../gpac_public/bin/gcc
+	cp -af ./libopenhevc/libopenhevc.so* $DEST/bin/gcc
 fi
 if [ -f ./libopenhevc/libopenhevc.dylib ]; then
-        cp -af ./libopenhevc/libopenhevc*.dylib ../../gpac_public/bin/gcc
+        cp -af ./libopenhevc/libopenhevc*.dylib $DEST/bin/gcc
 fi
 cd ..

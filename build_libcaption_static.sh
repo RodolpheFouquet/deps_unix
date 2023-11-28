@@ -1,5 +1,7 @@
 #!/bin/sh -x
 
+DEST=$2
+
 echo "Compilation of libcaption"
 
 branch="master"
@@ -17,9 +19,9 @@ cmake -DENABLE_RE2C=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON .
 make || exit 1
 
 
-mkdir -p ../../gpac_public/extra_lib/include/caption
-cp ./caption/*.h ../../gpac_public/extra_lib/include/caption/
+mkdir -p $DEST/extra_lib/include/caption
+cp ./caption/*.h $DEST/extra_lib/include/caption/
 
-mkdir -p ../../gpac_public/extra_lib/lib/gcc
-cp ./libcaption.a ../../gpac_public/extra_lib/lib/gcc
+mkdir -p $DEST/extra_lib/lib/gcc
+cp ./libcaption.a $DEST/extra_lib/lib/gcc
 cd ..

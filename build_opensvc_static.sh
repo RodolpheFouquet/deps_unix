@@ -1,5 +1,7 @@
 #!/bin/sh
 
+DEST=$2
+
 cd opensvc/svcsvn/
 #svn revert -R .
 patch -p0 < ../gpac_bb.patch
@@ -25,10 +27,10 @@ ar cr libOpenSVCDec.a temp/*.o
 ranlib libOpenSVCDec.a
 rm -rf temp
 
-mkdir -p ../../../gpac_public/extra_lib/include/OpenSVCDecoder
-cp CommonFiles/src/*.h ../../../gpac_public/extra_lib/include/OpenSVCDecoder
+mkdir -p $DEST/extra_lib/include/OpenSVCDecoder
+cp CommonFiles/src/*.h $DEST/extra_lib/include/OpenSVCDecoder
 
-mkdir -p ../../../gpac_public/extra_lib/lib/gcc
-cp libOpenSVCDec.a ../../../gpac_public/extra_lib/lib/gcc
+mkdir -p $DEST/extra_lib/lib/gcc
+cp libOpenSVCDec.a $DEST/extra_lib/lib/gcc
 
 cd ..

@@ -1,5 +1,7 @@
 #!/bin/sh -x
 
+DEST=$2
+
 echo "Compilation of mpeghdec"
 
 branch="main"
@@ -25,11 +27,11 @@ cmake -S . -B build  -DCMAKE_TOOLCHAIN_FILE=build/toolchain.cmake   -DCMAKE_BUIL
 cmake --build build --parallel 4
 
 
-mkdir -p ../../gpac_public/extra_lib/include
-cp -av include/mpeghdecoder.h ../../gpac_public/extra_lib/include/
+mkdir -p $DEST/extra_lib/include
+cp -av include/mpeghdecoder.h $DEST/extra_lib/include/
 
-mkdir -p ../../gpac_public/extra_lib/lib/gcc
-cp -av build/lib/lib*.a ../../gpac_public/extra_lib/lib/gcc/
+mkdir -p $DEST/extra_lib/lib/gcc
+cp -av build/lib/lib*.a $DEST/extra_lib/lib/gcc/
 
 
 cd ..

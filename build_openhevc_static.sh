@@ -1,5 +1,7 @@
 #!/bin/sh -x
 
+DEST=$2
+
 echo "Compilation of OpenHEVC"
 
 branch="ffmpeg_update"
@@ -22,9 +24,9 @@ fi
 make openhevc-static || exit 1
 
 
-mkdir -p ../../gpac_public/extra_lib/include/libopenhevc
-cp ./libopenhevc/*.h ../../gpac_public/extra_lib/include/libopenhevc
+mkdir -p $DEST/extra_lib/include/libopenhevc
+cp ./libopenhevc/*.h  $DEST/extra_lib/include/libopenhevc
 
-mkdir -p ../../gpac_public/extra_lib/lib/gcc
-cp ./libopenhevc/libopenhevc.a ../../gpac_public/extra_lib/lib/gcc
+mkdir -p  $DEST/extra_lib/lib/gcc
+cp ./libopenhevc/libopenhevc.a  $DEST/extra_lib/lib/gcc
 cd ..
